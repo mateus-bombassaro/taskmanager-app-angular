@@ -36,10 +36,10 @@ Referente às tecnologias que serão citadas abaixo, caso você não domine algu
 ## Entrega
 
 - Disponibilizar o projeto em sua conta do Github com instruções para execução (através de um README, por exemplo)
-- Deve ser entregue até a data 10/10/2010
-- O link do repositório deve ser enviado para sara.lopes@totvs.com.br
+- Deve ser entregue até a data 09/05/2022
+- O link do repositório deve ser enviado para eduardo.gabriel@fluig.com
 
 
 ## Dúvidas
 
-Em caso de dúvidas, entre em contato com sara.lopes@totvs.com.br.
+Em caso de dúvidas, entre em contato com eduardo.gabriel@fluig.com
