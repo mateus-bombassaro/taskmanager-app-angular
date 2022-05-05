@@ -32,23 +32,23 @@ export class ApiService {
     );
   }
 
-  // getList(id:string): Observable<Tasks> {
-  //   return this.http.get<Tasks>(`${this.urlApi}/lists/${id}`)
-  //   .pipe(
-  //     catchError(() => {
-  //       throw 'Erro ao carregar tarefa'
-  //     })
-  //   );
-  // }
+  getList(id:string): Observable<TaskLists> {
+    return this.http.get<TaskLists>(`${this.urlApi}/lists/${id}`)
+    .pipe(
+      catchError(() => {
+        throw 'Erro ao carregar lista'
+      })
+    );
+  }
 
-  // getTask(id:string): Observable<Tasks> {
-  //   return this.http.get<Tasks>(`${this.urlApi}/tasks/${id}`)
-  //   .pipe(
-  //     catchError(() => {
-  //       throw 'Erro ao carregar tarefa'
-  //     })
-  //   );
-  // }
+  getTask(id:string): Observable<Tasks> {
+    return this.http.get<Tasks>(`${this.urlApi}/tasks/${id}`)
+    .pipe(
+      catchError(() => {
+        throw 'Erro ao carregar tarefa'
+      })
+    );
+  }
 
   postTask(task:Tasks) {
     return this.http.post<Tasks>(`${this.urlApi}/tasks`, task, {headers: this.jsonHeaders})

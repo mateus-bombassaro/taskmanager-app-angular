@@ -1,27 +1,38 @@
+<app-loader *ngIf="showLoader"></app-loader>
+
 <div class="card">
-  <div class="card-header">
-    Listas de tarefas
+  <div class="card-header d-flex justify-content-between">
+    <h3>Listas</h3>
+    <button type="button" class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Adicionar
+    </button>
   </div>
-  <div class="table-responsive">
-    <table class="table mb-0">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let list of lists">
-          <td>
-            {{list.title}}
-          </td>
-          <td>
-            <button class="btn btn-primary btn-sm">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th class="col-10">Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of lists">
+            <td>
+              {{list.title}}
+            </td>
+            <td>
+              <button class="btn btn-light btn-sm mr-2" [routerLink]="['lista/editar/', list.id]">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-primary btn-sm" [routerLink]="['lista/visualizar/', list.id]">
+                <i class="fa fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
