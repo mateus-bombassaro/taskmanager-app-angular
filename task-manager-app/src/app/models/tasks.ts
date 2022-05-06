@@ -1,5 +1,6 @@
 export interface Tasks {
   id: string,
   listId: string,
-  title: string
+  title: string,
+  done?:boolean,
 }

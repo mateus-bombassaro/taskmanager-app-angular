@@ -1,1 +1,46 @@
-<p>tasks works!</p>
+<app-loader *ngIf="showLoader"></app-loader>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h3>Tarefas de {{listName}}:</h3>
+    <button type="button" class="btn btn-primary" (click)="onAdd()">
+      <i class="fa fa-plus"></i>
+      Adicionar
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th class="col-10">Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>
+              <i *ngIf="task.done" class="fa fa-check" style="color:green"></i>
+              {{task.title}}
+            </td>
+            <td>
+              <button class="btn btn-dark btn-sm mr-4" (click)="onEdit(task.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-danger btn-sm mr-4" (click)="onDelete(task.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-primary btn-sm" (click)="onConclude(task)">
+                <i class="fa fa-check"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

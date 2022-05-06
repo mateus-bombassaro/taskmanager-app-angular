@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { Subscription } from 'rxjs';
+
 import { Tasks } from 'src/app/models/tasks';
 import { TaskLists } from 'src/app/models/taskLists';
 import { ApiService } from 'src/app/services/api.service';
@@ -26,6 +28,7 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
     private apiService: ApiService) {
 
    }
@@ -47,19 +50,21 @@ export class RegisterComponent implements OnInit {
       const taskId = params.get('taskId') || '';
       const listId = params.get('listId') || '';
 
-      if(!taskId && !listId) {
-        this.isAddForm = true;
+      this.isAddForm = this.router.url.includes('adicionar');
 
+      if(this.isAddForm) {
         this.formValues = this.formFormat === 'list'
           ? {id: '', title: ''}
-          : {id: '', title: '', listId: ''};
+          : {id: '', title: '', listId: listId};
+
+        this.showLoader = false;
 
       } else if(taskId) {
         this.loadTask(taskId);
       } else {
         this.loadList(listId);
       }
-    })
+    });
   }
 
   loadTask(id:string): void {
@@ -94,20 +99,6 @@ export class RegisterComponent implements OnInit {
     this.showLoader = false;
   }
 
-  deleteTask(): void {
-    if(this.formValues.id) {
-      this.onSaveComplete();
-    }else {
-      if(confirm(`Tem certeza que deseja excluir a tarefa: ${this.formValues.title}?`)) {
-        this.apiService.deleteTask(this.formValues.id)
-        .subscribe({
-          next: (res) => this.onSaveComplete(res),
-          error: (err:any) => this.errorMessage = <any>err
-        })
-      }
-    }
-  }
-
   onSubmit(): void {
     if(this.formGroup.valid) {
       if(this.formGroup.dirty) {
@@ -128,7 +119,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  save<TaskLists extends Tasks>(reqBody:TaskLists|Tasks) {
+  save<TaskLists extends Tasks>(reqBody:TaskLists|Tasks):void {
     if(this.formFormat === 'task') {
       this.apiService.postTask(reqBody).subscribe({
         next: (res) => this.onSaveComplete(res),
@@ -142,7 +133,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  update<TaskLists extends Tasks>(reqBody:TaskLists|Tasks) {
+  update<TaskLists extends Tasks>(reqBody:TaskLists|Tasks):void {
     if(this.formFormat === 'task') {
       this.apiService.putTask(reqBody).subscribe({
         next: (res) => this.onSaveComplete(res),
@@ -157,15 +148,19 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  onSaveComplete(res?:any) {
+  onSaveComplete(res?:any):void {
     this.formGroup.reset();
-    this.formFormat === 'list'
-      ? this.router.navigate([''])
-      : this.router.navigate(['lista/visualizar/', res.listId])
+    this.redirectToList();
   }
 
-  onError(err:any) {
+  onError(err:any):void {
     this.errorMessage = err
+  }
+
+  redirectToList():void {
+    this.formFormat === 'list'
+    ? this.router.navigate([''])
+    : this.location.back();
   }
 
   ngOnDestroy(): void {

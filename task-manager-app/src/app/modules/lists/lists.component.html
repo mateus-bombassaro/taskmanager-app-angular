@@ -1,9 +1,13 @@
 <app-loader *ngIf="showLoader"></app-loader>
 
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+
 <div class="card">
   <div class="card-header d-flex justify-content-between">
-    <h3>Listas</h3>
-    <button type="button" class="btn btn-primary">
+    <h3>Listas:</h3>
+    <button type="button" class="btn btn-primary" [routerLink]="['lista/adicionar']">
       <i class="fa fa-plus"></i>
       Adicionar
     </button>
@@ -23,10 +27,13 @@
               {{list.title}}
             </td>
             <td>
-              <button class="btn btn-light btn-sm mr-2" [routerLink]="['lista/editar/', list.id]">
+              <button class="btn btn-light btn-sm mr-4" [routerLink]="['lista/editar/', list.id]">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="btn btn-primary btn-sm" [routerLink]="['lista/visualizar/', list.id]">
+              <button class="btn btn-danger btn-sm mr-4" (click)="onDelete(list.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-primary btn-sm" [routerLink]="['lista/visualizar/', list.id, list.title]">
                 <i class="fa fa-eye"></i>
               </button>
             </td>

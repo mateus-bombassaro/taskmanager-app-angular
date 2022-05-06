@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', component: ListsComponent
   },
   {
-    path: 'lista/visualizar/:listId', component: TasksComponent
+    path: 'lista/visualizar/:listId/:listTitle', component: TasksComponent
   },
   {
     path: 'lista/editar/:listId', component: RegisterComponent
@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'lista/adicionar', component: RegisterComponent
   },
   {
-    path: 'tarefa/adicionar', component: RegisterComponent
+    path: 'tarefa/adicionar/:listId', component: RegisterComponent
   },
 ];
 

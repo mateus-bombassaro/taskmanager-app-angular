@@ -13,7 +13,8 @@
     {
       "id": 1,
       "listId": 1,
-      "title": "Comprar arroz"
+      "title": "Comprar arroz",
+      "done": true
     },
     {
       "id": 2,
@@ -24,6 +25,12 @@
       "id": 3,
       "listId": 2,
       "title": "Reunião às 10:00"
+    },
+    {
+      "id": 6,
+      "title": "comprar chocolate",
+      "listId": "1",
+      "done": true
     }
   ]
 }
