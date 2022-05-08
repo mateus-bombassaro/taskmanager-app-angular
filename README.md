@@ -6,9 +6,9 @@ Nesse aplicativo devia ser possível criar listas, e dentro delas adicionar tare
 
 ## Requisitos
 
-- Utilizar [JSON Server](https://github.com/typicode/json-server) como um fake REST API. [x]
-- Utilizar a última versão do framework Angular [x]
-- Utilizar o Bootstrap, versão 3 ou 4, como folha de estilo base [x]
+- [x] Utilizar [JSON Server](https://github.com/typicode/json-server) como um fake REST API.
+- [x] Utilizar a última versão do framework Angular
+- [x] Utilizar o Bootstrap, versão 3 ou 4, como folha de estilo base
 
 ## Como rodar o projeto?
 
@@ -23,7 +23,7 @@ Nesse aplicativo devia ser possível criar listas, e dentro delas adicionar tare
 
 ## Diferenciais
 
-- Teste unitário / E2E - Por conta do tempo de desenvolvimento esse diferencial não foi realizado.
+- [ ] Teste unitário / E2E - Por conta do tempo de desenvolvimento esse diferencial não foi realizado.
 - [x] Preocupações com a usabilidade - uso a responsividade do bootstrap para garantir ajuste de layout em telas de diferentes tamanhos.
 - [x] Validações nos campos - Os títulos das tarefas e listas devem possuir entre 3 e 50 caracteres e são obrigatórios nos formulários. 
 - [x] Organização do código - A organização está explicada na próxima sessão.
@@ -43,4 +43,4 @@ A organização macro do projeto foi feito dividindo-o em quatro pastas principa
   essa determinada lista ou alterar seu status para concluído. A terceira e última entidade trata-se de um formulário de cadastro ou edição que é compartilhado entre as duas entidades
   pelo fato de ambas terem apenas um campo homônimo que é possível editar, seu título.
 
-  -Services: Nesta pasta estão contidos todos os métodos que fazem comunicação direta com a API disponibilizada para o desafio e tratamento de erro em caso de falha nas requisições. 
+  - Services: Nesta pasta estão contidos todos os métodos que fazem comunicação direta com a API disponibilizada para o desafio e tratamento de erro em caso de falha nas requisições. 
