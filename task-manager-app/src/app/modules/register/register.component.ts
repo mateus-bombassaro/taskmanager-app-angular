@@ -11,7 +11,6 @@ import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
@@ -19,7 +18,6 @@ export class RegisterComponent implements OnInit {
   pageTitle:string = 'Adicionar Tarefa';
   formValues:Tasks|TaskLists;
   formGroup:FormGroup;
-  validationMessages: {[ key:string ]:string }
   subscription:Subscription;
   showLoader:boolean = true;
   formFormat:string = '';
@@ -37,12 +35,6 @@ export class RegisterComponent implements OnInit {
     this.formGroup = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
     });
-
-    this.validationMessages = {
-      required: 'O campo é obrigatório.',
-      minlength: 'O nome deve possuir 3 ou mais caracteres.',
-      maxlength: 'O tamanho máximo é 50 caracteres.'
-    }
 
     this.formFormat = this.router.url.includes('lista') ? 'list' : 'task';
 
@@ -115,7 +107,7 @@ export class RegisterComponent implements OnInit {
         this.onSaveComplete();
       }
     } else {
-      this.errorMessage = "Por favor corriga os erros de digitação";
+      this.errorMessage = "Por favor verifique os valores preenchidos, o título deve possuir de 3 a 50 caracteres.";
     }
   }
 
